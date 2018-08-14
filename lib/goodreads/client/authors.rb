@@ -16,5 +16,10 @@ module Goodreads
       data = request("/api/author_url/#{name_encoded}", params)
       Hashie::Mash.new(data["author"])
     end
+
+    def follow_author(id, params = {})
+      params[:id] = id
+      oauth_request_method(:post, "/author_followings", params)
+    end
   end
 end
