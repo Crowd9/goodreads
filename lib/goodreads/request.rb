@@ -87,6 +87,8 @@ module Goodreads
         fail Goodreads::Unauthorized
       when Net::HTTPNotFound
         fail Goodreads::NotFound
+      when Net::HTTPUnprocessableEntity
+        fail Goodreads::UnprocessableEntity, resp
       end
 
       parse(resp)
